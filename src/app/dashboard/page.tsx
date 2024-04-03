@@ -1,8 +1,17 @@
 'use client';
 import Link from "next/link";
+import React from "react";
+
 
 
 export default function Home() {
+    const [disease, setDisease] = React.useState({
+        nod: "",
+        dod: "",
+        cftd: "",
+        wtp: "",
+
+    });
 
     return (
         <div className="flex flex-col bg-gradient-to-r from-emerald-400 to-lime-500 h-screen items-center">
@@ -15,21 +24,21 @@ export default function Home() {
                     <p className="pl-11 text-sm text-white font-light p-2">Welcome, Shaluka Manodya</p>
                 </div>
             </div>
-            <div className="flex bg-white h-4/5 w-11/12 rounded-xl drop-shadow-xl mt-5">
+            <div className="flex bg-white h-4/5 w-11/12 rounded-3xl drop-shadow-2xl mt-5">
 
-                <div className="w-1/2 p-2 border-r-2">
-                    <h1 className="text-center font-bold bg-lime-400 p-2 rounded-full">Diagnosis Report</h1>
-                    <div className="">
-                        <p className="p-2">Name of the Disease:</p>
-                        <p className="p-2">Description:</p>
-                        <p className="p-2">Treatment:</p>
-                        <p className="p-2">Prevention:</p>
-                    </div>
+                <div className="w-1/2 p-2">
+                    <h1 className="text-center font-bold bg-lime-400 p-2 rounded-3xl drop-shadow-md ">Diagnosis Report</h1>
+
 
                 </div>
-                <div className="flex w-1/2 p-2 items-center justify-center align-middle">
+                <div className="flex flex-col bg-emerald-100 rounded-r-3xl w-1/2 p-2 items-center justify-center align-middle">
 
-                    <h1 className="text-slate-400">upload pictures of the plant</h1>
+
+                    <label htmlFor="file" className="text-emerald-400 border-dashed border-2 border-emerald-400 p-20 rounded-xl hover:cursor-pointer">Upload Picture</label>
+
+                    <input type="file" id="file" className="hidden" />
+                    <button className="mt-11 p-4 bg-emerald-600 rounded-full hover:bg-lime-400 text-sm text-white drop-shadow-md hover:text-black">Start Diagnosis</button>
+
 
                 </div>
             </div>
@@ -37,3 +46,5 @@ export default function Home() {
         </div >
     );
 }
+
+
