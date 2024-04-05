@@ -11,13 +11,16 @@
   "dependencies": {
     "@google/generative-ai": "^0.3.1",
     "dotenv": "^16.4.5",
+    "formidable": "^3.5.1",
     "fs": "^0.0.1-security",
     "next": "14.1.4",
+    "next-connect": "^1.0.0",
     "next-videos": "^1.4.1",
     "react": "^18",
     "react-dom": "^18"
   },
   "devDependencies": {
+    "@types/formidable": "^3.4.5",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
