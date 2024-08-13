@@ -20,7 +20,7 @@ export default function Home() {
     const [file, setFile] = React.useState<File>();
     const [loading, setLoading] = React.useState(false);
     const [imageURL, setImageUrl] = React.useState("");
-    const [imageURL2, setImageUrl2] = React.useState("");
+
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files) {
@@ -103,10 +103,10 @@ export default function Home() {
                                     Upload an image and start diagnosis
                                 </p></div> :
                             <div className="flex flex-col p-4  ">
-                                <p><b>Name of disease:</b> {disease.nod}</p>
-                                <p><b>Description:</b> {disease.dod}</p>
-                                <p><b>Prevention of the disease:</b> {disease.wtp}</p>
-                                <p><b>Cure for the disease:</b>{disease.cftd}</p>
+                                <p><b>Name of disease: </b> {disease.nod}</p>
+                                <p><b>Description: </b> {disease.dod}</p>
+                                <p><b>Prevention of the disease: </b> {disease.wtp}</p>
+                                <p><b>Cure for the disease: </b>{disease.cftd}</p>
                             </div>
                     }
 
