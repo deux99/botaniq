@@ -26,9 +26,15 @@ export async function POST(request: NextRequest) {
         };
 
 
-        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro" });
+        const model = genAI.getGenerativeModel({ model: "gemini-1.5-pro", generation_config: { "response_mime_type": "application/json" } });
 
-        const prompt = "identify what disease this plant has by understanding the image of the plant, fruit or leaf and please return the information only using the following JSON format (note xxx is placeholder, if the information is not available in the image, put “N/A” instead). “nameOfTheDisease”: xxx, “descriptionOfDisease”: xxx, “waysToprevent”: xxx, “cureForTheDisease”: xxx. please enter each data in paragraphs. answer type: JSON";
+        const prompt = `identify what disease this plant has by understanding the image of the plant, fruit or leaf and please return the information only using the following JSON format (note xxx is placeholder, if the information is not available in the image, put “N/A” instead):
+{
+  "nameOfTheDisease": "xxx",
+  "descriptionOfDisease": "xxx",
+  "waysToprevent": "xxx",
+  "cureForTheDisease": "xxx"
+}`;
 
         const imageParts =
             fileToGenerativePart(file.type)
