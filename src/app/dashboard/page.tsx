@@ -55,7 +55,7 @@ export default function Home() {
 
                 data.set('file', file);
 
-                const res = await axios.post("http://localhost:3000/api/gemini", data);
+                const res = await axios.post("/api/gemini", data);
 
                 const parsed = JSON.parse(res.data.text)
                 setStatus(true)
