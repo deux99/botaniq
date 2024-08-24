@@ -1,4 +1,4 @@
-Here’s a basic GitHub repository documentation template for **Botaniq**:
+
 
 ---
 
