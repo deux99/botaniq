@@ -1,5 +1,4 @@
 'use client';
-import axios from "axios";
 import Link from "next/link";
 import React from "react";
 import Image from 'next/image';
@@ -55,9 +54,18 @@ export default function Home() {
 
                 data.set('file', file);
 
-                const res = await axios.post("http://localhost:3000/api/gemini", data);
+                const res = await fetch("http://localhost:3000/api/gemini", {
+                    method: 'POST',
+                    body: data
+                });
 
-                const parsed = JSON.parse(res.data.text)
+                if (!res.ok) {
+                    throw new Error('Network response was not ok');
+                }
+
+                const resData = await res.json();
+
+                const parsed = JSON.parse(resData.text);
                 setStatus(true)
                 console.log(parsed);
                 setDisease({
