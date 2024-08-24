@@ -1,7 +1,3 @@
-
-
----
-
 # Botaniq - AI-Powered Plant Disease Diagnosis
 
 **Botaniq** is a user-friendly web application designed to help home gardeners diagnose plant diseases with accuracy by utilizing artificial intelligence. By simply uploading photos of their plants, users can receive valuable insights into plant health, access treatments, and prevent further issues.
