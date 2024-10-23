@@ -1,6 +1,6 @@
 /** @type {import('next').NextConfig} */
-const nextConfig = {};
+const nextConfig = {
+    basePath: '/botaniq',
+};
 
 export default nextConfig;
-
-
