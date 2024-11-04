@@ -76,7 +76,7 @@ export default function Home() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row bg-white h-auto md:h-4/5 lg:h-screen w-full max-w-6xl rounded-3xl drop-shadow-2xl mt-5 p-4">
-                <div className="flex flex-col h-full w-full md:w-1/2 p-4">
+                <div className="flex flex-col h-full w-full md:w-1/2 p-2">
                     <h1 className="text-center font-bold bg-lime-400 p-2 rounded-3xl drop-shadow-md mb-4">Diagnosis Report</h1>
                     {loading ? (
                         <div className="flex justify-center items-center h-full">
@@ -90,10 +90,10 @@ export default function Home() {
                         </div>
                     ) : (
                         <div className="flex flex-col p-4">
-                            <p><b>Name of disease: </b> {disease.nod}</p>
-                            <p><b>Description: </b> {disease.dod}</p>
-                            <p><b>Prevention of the disease: </b> {disease.wtp}</p>
-                            <p><b>Cure for the disease: </b>{disease.cftd}</p>
+                            <p className="pb-5"><b>Name of disease: </b> <span className="pb-5 text-red-600 font-bold">{disease.nod}</span></p>
+                            <p className="pb-5"><b>Description: </b> <span className="pb-5">{disease.dod}</span></p>
+                            <p className="pb-5"><b>Prevention of the disease: </b> <span className="pb-5">{disease.wtp}</span></p>
+                            <p className=""><b>Cure for the disease: </b><span className="pb-5">{disease.cftd}</span></p>
                         </div>
                     )}
                 </div>
