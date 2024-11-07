@@ -3,13 +3,13 @@ import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-    apiKey: "AIzaSyCa0RMRjb0lcnN24M1xkZ0YGNxi0A6MURw",
-    authDomain: "botaniq-40acb.firebaseapp.com",
-    projectId: "botaniq-40acb",
-    storageBucket: "botaniq-40acb.appspot.com",
-    messagingSenderId: "822466677402",
-    appId: "1:822466677402:web:7d411c4842ea5a1b6b6d23",
-    measurementId: "G-KZSFPVWZ3P"
+  apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+  authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+  projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+  storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+  messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+  appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+  measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
   };
   
   const app = initializeApp(firebaseConfig);

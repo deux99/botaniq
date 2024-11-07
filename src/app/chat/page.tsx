@@ -21,7 +21,7 @@ export default function Home() {
     console.log(user);
 
     useEffect(() => {
-        
+        // Check authentication status
         if (!isAuthenticated && !user) {
             router.push('/');
         }
@@ -47,7 +47,7 @@ export default function Home() {
         e.preventDefault();
         if (inputValue.trim() === '') return;
 
-        
+        // Add the user's message to Firestore
         await addDoc(collection(db, "messages"), {
             sender: user?.uid || 'unknown',
             text: inputValue,
@@ -55,7 +55,7 @@ export default function Home() {
             timestamp: new Date()
         });
 
-       
+        // Clear the input
         setInputValue('');
     };
 
@@ -99,13 +99,13 @@ export default function Home() {
                 </div>
             </div>
             <div className="flex flex-col md:flex-row bg-white h-auto md:h-4/5 w-full max-w-6xl rounded-3xl drop-shadow-2xl mt-5 p-4">
-               
+                {/* Chat Interface */}
                 <div className="flex flex-col h-full w-full p-2">
                     <h1 className="text-center font-bold bg-lime-400 p-2 rounded-3xl drop-shadow-md mb-4">
                         Chat
                     </h1>
 
-                   
+                    {/* Messages Display */}
                     <div className="flex-1 overflow-y-auto p-4 space-y-4 h-96">
                         {messages.map((message, index) => (
                             <div
@@ -144,7 +144,7 @@ export default function Home() {
                         <div ref={messagesEndRef} />
                     </div>
 
-                    
+                    {/* Message Input */}
                     <form onSubmit={handleSendMessage} className="flex p-4 border-t">
                         <input
                             type="text"

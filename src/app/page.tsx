@@ -41,7 +41,7 @@ const [loading, setLoading] = React.useState(true);
         const errorMessage = error.message;
         const email = error.customData.email;
         const credential = GoogleAuthProvider.credentialFromError(error);
-        console.error('Error signing in: ', errorCode, errorMessage, email, credential);
+        
       });
   };
 
