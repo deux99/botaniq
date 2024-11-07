@@ -1,10 +1,32 @@
 'use client';
 import axios from "axios";
 import Link from "next/link";
-import React from "react";
+import React, { useEffect, useRef } from "react";
 import Image from 'next/image';
+import { getAuth, signOut } from 'firebase/auth';
+import { initializeApp } from "firebase/app";
+import { useRouter } from "next/navigation";
+import { useSelector } from "react-redux";
+import { RootState, useAppDispatch } from '../store/store';
+import { authActions } from "../auth-slice/authSlice";
+import Router from "next/navigation";
+import  {app, auth}  from '../lib/firebaseConfig';
+
 
 export default function Home() {
+    const router = useRouter();
+    const dispatch = useAppDispatch();
+    const { user, isAuthenticated } = useSelector((state: RootState) => state.auth);
+    const fileInputRef = useRef<HTMLInputElement>(null);
+    useEffect(() => {
+        // Check authentication status
+        if (!isAuthenticated && !user) {
+            router.push('/');
+        }
+        setLoading(false);
+    }, [isAuthenticated, user, router]);
+
+ 
     const [response, setResponse] = React.useState({});
     const [status, setStatus] = React.useState(false);
     const [disease, setDisease] = React.useState({
@@ -17,6 +39,16 @@ export default function Home() {
     const [file, setFile] = React.useState<File | null>(null);
     const [loading, setLoading] = React.useState(false);
     const [imageURL, setImageUrl] = React.useState("");
+
+    const handleLogout = async () => {
+        try {
+          await signOut(auth);
+          dispatch(authActions.logout());
+          router.push('/');
+        } catch (error) {
+          console.error('Error logging out:', error);
+        }
+      };
 
     const getImage = (e: React.ChangeEvent<HTMLInputElement>) => {
         if (e.target.files && e.target.files[0]) {
@@ -37,6 +69,13 @@ export default function Home() {
         });
         setLoading(false);
         setImageUrl("");
+        if (fileInputRef.current) {
+            fileInputRef.current.value = "";
+        }
+    }
+
+    const navigate = () => {
+        router.push('/chat');
     }
 
     const promptReq = async () => {
@@ -71,8 +110,23 @@ export default function Home() {
                     <Link href="/"><h1 className="text-white text-2xl font-bold">BotaniQ AI</h1></Link>
                 </div>
                 <div className="flex w-full md:w-1/2 items-end justify-end text-right align-middle mt-4 mr-4">
-                    <p className="text-sm hover:bg-emerald-500 hover:cursor-pointer text-white bg-emerald-600 rounded-lg p-2">Chat Forum</p>
-                    
+                    <button onClick={navigate} className="text-sm hover:bg-emerald-500 hover:cursor-pointer text-white bg-emerald-600 rounded-lg p-2">Chat Forum</button>
+                    <button 
+            onClick={handleLogout}
+            className="text-sm ml-2 hover:bg-red-500 hover:cursor-pointer text-white bg-red-600 rounded-lg p-2"
+        >
+            Logout
+        </button>
+        {typeof window !== 'undefined' && user?.photoURL && (
+  <Image 
+    src={user.photoURL}
+    alt="Profile"
+    width={40}
+    height={40}
+    className="rounded-full border-2 ml-2 border-white object-cover"
+  />
+)}
+       
                 </div>
             </div>
             <div className="flex flex-col md:flex-row bg-white h-auto md:h-4/5 lg:h-screen w-full max-w-6xl rounded-3xl drop-shadow-2xl mt-5 p-4">
@@ -124,6 +178,8 @@ export default function Home() {
                     <input type="file" id="file" name="image" className="hidden" onChange={getImage} />
                 </div>
             </div>
+            
+            
             <Link href="tel:+94766104475"><p className="hover:text-green-800 text-white mt-6 text-xs">Developed by shaluka manodya © 2024</p></Link>
         </div>
     );
